@@ -5,9 +5,17 @@ const getBlogs = async (req, res) => {
     try {
         if (search){
             const rows = await blogsModel.getallsearch(search);
+            res.status(200).json({
+                message:'Success',
+                data: rows
+            })
 
         } else {
             const [data] = await blogsModel.getAll();
+            res.status(200).json({
+                message:'Success',
+                data:data
+            })
         }
     } catch (error) {
         res.status(400).json({

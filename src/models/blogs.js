@@ -50,9 +50,18 @@ const update = (id, body, image) => {
     return dbPool.execute(SQLQuery, [body.title, body.description, image, body.status, body.video_url, id]);
 }
 
+const createNew = (body, image) =>{
+    const id = cuid();
+    const SQLQuery = `INSERT INTO blogs (id, title, description, image, status, type, video_url)
+                        VALUES(?, ?, ?, ?, ?,?,?)`;
+                        return dbPool.execute(SQLQuery, [id, body.title, body.description,image, body.status, body.type, body.video_url]);
+}
+
 module.exports ={
     getbyid,
     getallsearch,
     update,
+    createNew,
+    
 
 }
